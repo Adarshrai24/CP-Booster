@@ -29,7 +29,7 @@ Stay inside the terminal.
 ### 1. Clone
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Adarshrai24/CP-Booster
 cd cp-booster
 ```
 
