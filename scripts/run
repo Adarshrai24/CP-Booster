@@ -1,0 +1,81 @@
+#!/bin/bash
+
+name=$1
+debug=$2
+
+# Colors
+RED='\033[31m'
+GREEN='\033[32m'
+YELLOW='\033[33m'
+CYAN='\033[36m'
+NC='\033[0m'  # No Color
+
+if [ -z "$name" ]; then
+    echo "Usage: run <problem_name> [-d]"
+    exit 1
+fi
+
+file="${name}.cpp"
+
+if [ ! -f "$file" ]; then
+    echo -e "${RED}File $file not found!${NC}"
+    exit 1
+fi
+
+echo -e "${CYAN}Compiling $file...${NC}"
+
+g++ "$file" -std=c++20 -O2 -o temp.out
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Compilation Error${NC}"
+    exit 1
+fi
+
+# Debug mode (manual input)
+if [ "$debug" == "-d" ]; then
+    echo -e "${CYAN}Running in debug mode...${NC}"
+    ./temp.out
+    exit
+fi
+
+count=0
+
+for input in ${name}_in*.txt; do
+    # If no test files exist
+    if [ ! -f "$input" ]; then
+        echo -e "${YELLOW}No test cases found.${NC}"
+        exit 1
+    fi
+
+    num=${input##*_in}
+    num=${num%.txt}
+    output="${name}_out${num}.txt"
+
+    ./temp.out < "$input" > temp.txt
+
+    if diff -q -w temp.txt "$output" > /dev/null; then
+        count=$((count+1))
+    else
+        echo
+        echo -e "${RED}❌ Wrong Answer on test case $num${NC}"
+        echo
+
+        echo -e "${YELLOW}Input:${NC}"
+        cat "$input"
+        echo
+
+        echo -e "${YELLOW}Your Output:${NC}"
+        cat temp.txt
+        echo
+
+        echo -e "${YELLOW}Expected Output:${NC}"
+        cat "$output"
+        echo
+
+        exit 1
+    fi
+done
+
+echo
+echo -e "${GREEN}✅ Accepted $count test case(s)${NC}"
+echo

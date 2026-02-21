@@ -1,0 +1,10 @@
+# Node modules
+server/node_modules/
+
+# Temporary build files
+temp.out
+temp.txt
+
+# OS junk
+.DS_Store
+Thumbs.db
