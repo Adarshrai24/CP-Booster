@@ -40,7 +40,7 @@ cd server
 npm install
 ```
 
-### 3. Add run to PATH
+### 3. Bash Setup
 
 Add this to your `~/.bashrc`:
 
@@ -52,14 +52,33 @@ Reload shell:
 source ~/.bashrc
 ```
 
+```bash
+cp() {
+    if [ "$1" == "init" ]; then
+        
+        # If second argument exists → treat as contest
+        if [ -n "$2" ]; then
+            mkdir "$2"
+            cd "$2" || return
+            node ~/cp-booster/server/server.js contest
+        else
+            node ~/cp-booster/server/server.js single
+        fi
+
+    else
+        echo "Unknown command"
+    fi
+}
+```
+
 ### 4. Configure CPH
 
 Set custom parser URL to:
 
 http://localhost:1321/
 
----
 
+---
 ## Usage
 
 ### Single Problem
