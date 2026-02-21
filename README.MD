@@ -28,13 +28,17 @@ Stay inside the terminal.
 
 ### 1. Clone
 
-git clone <your-repo-url>  
+```bash
+git clone <your-repo-url>
 cd cp-booster
+```
 
 ### 2. Install server dependencies
 
-cd server  
+```bash
+cd server
 npm install
+```
 
 ### 3. Add run to PATH
 
@@ -44,7 +48,9 @@ export PATH="$HOME/cp-booster/scripts:$PATH"
 
 Reload shell:
 
+```bash
 source ~/.bashrc
+```
 
 ### 4. Configure CPH
 
@@ -58,7 +64,9 @@ http://localhost:1321/
 
 ### Single Problem
 
+```bash
 cp init
+```
 
 Parses problem into current directory:
 
@@ -66,11 +74,11 @@ Problem_Name.cpp
 Problem_Name_in1.txt  
 Problem_Name_out1.txt  
 
----
-
 ### Contest Mode
 
+```bash
 cp init ContestName
+```
 
 Creates:
 
@@ -85,7 +93,9 @@ ContestName/
 
 ### Running Solutions
 
+```bash
 run A
+```
 
 Compiles `A.cpp`, runs all test cases.
 
@@ -107,7 +117,9 @@ On WA, it prints:
 
 ### Debug Mode
 
+```bash
 run A -d
+```
 
 Runs program with manual input (no comparison).
 
