@@ -50,26 +50,6 @@ Reload shell:
 
 ```bash
 source ~/.bashrc
-```
-
-```bash
-cp() {
-    if [ "$1" == "init" ]; then
-        
-        # If second argument exists → treat as contest
-        if [ -n "$2" ]; then
-            mkdir "$2"
-            cd "$2" || return
-            node ~/cp-booster/server/server.js contest
-        else
-            node ~/cp-booster/server/server.js single
-        fi
-
-    else
-        echo "Unknown command"
-    fi
-}
-```
 
 ### 4. Configure CPH
 
@@ -84,7 +64,7 @@ http://localhost:1321/
 ### Single Problem
 
 ```bash
-cp init
+cpb init
 ```
 
 Parses problem into current directory:
@@ -96,7 +76,7 @@ Problem_Name_out1.txt
 ### Contest Mode
 
 ```bash
-cp init ContestName
+cpb init ContestName
 ```
 
 Creates:

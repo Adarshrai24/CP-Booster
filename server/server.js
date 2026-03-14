@@ -23,7 +23,7 @@ function resetTimer(server) {
     timer = setTimeout(() => {
         console.log("Parsing finished.");
         server.close();
-    }, 1000);
+    }, 500);
 }
 
 function sanitize(name) {
