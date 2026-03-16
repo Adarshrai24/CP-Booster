@@ -64,7 +64,8 @@ app.post("/", (req, res) => {
         server.close();
     }
 
-    if (mode === "contest") resetTimer(server);
+    if (mode === "contest" || mode === "server") resetTimer(server);
+    
 
     res.send("OK");
 });
