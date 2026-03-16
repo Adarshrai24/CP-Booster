@@ -50,7 +50,7 @@ Reload shell:
 
 ```bash
 source ~/.bashrc
-
+```
 ### 4. Configure CPH
 
 Set custom parser URL to:
