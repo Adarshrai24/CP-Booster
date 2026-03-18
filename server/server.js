@@ -48,7 +48,7 @@ app.post("/", (req, res) => {
         });
 
         currentLetter = String.fromCharCode(currentLetter.charCodeAt(0) + 1);
-
+        resetTimer(server);
     } else {
         const baseName = sanitize(data.name);
         fileName = baseName + ".cpp";
@@ -59,13 +59,8 @@ app.post("/", (req, res) => {
             fs.writeFileSync(`${baseName}_in${index+1}.txt`, test.input);
             fs.writeFileSync(`${baseName}_out${index+1}.txt`, test.output);
         });
-
-        console.log("Single problem parsed.");
-        server.close();
+        resetTimer(server);
     }
-
-    if (mode === "contest" || mode === "server") resetTimer(server);
-    
 
     res.send("OK");
 });
